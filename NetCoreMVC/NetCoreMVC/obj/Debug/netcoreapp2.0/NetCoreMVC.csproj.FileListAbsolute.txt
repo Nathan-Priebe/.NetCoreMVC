@@ -1,0 +1,11 @@
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\bin\Debug\netcoreapp2.0\NetCoreMVC.deps.json
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\bin\Debug\netcoreapp2.0\NetCoreMVC.runtimeconfig.json
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\bin\Debug\netcoreapp2.0\NetCoreMVC.runtimeconfig.dev.json
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\bin\Debug\netcoreapp2.0\NetCoreMVC.dll
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\bin\Debug\netcoreapp2.0\NetCoreMVC.pdb
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\obj\Debug\netcoreapp2.0\NetCoreMVC.csprojResolveAssemblyReference.cache
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\obj\Debug\netcoreapp2.0\NetCoreMVC.csproj.CoreCompileInputs.cache
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\obj\Debug\netcoreapp2.0\NetCoreMVC.AssemblyInfoInputs.cache
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\obj\Debug\netcoreapp2.0\NetCoreMVC.AssemblyInfo.cs
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\obj\Debug\netcoreapp2.0\NetCoreMVC.dll
+C:\Users\Nathan Priebe\NetCoreMvc\NetCoreMVC\NetCoreMVC\obj\Debug\netcoreapp2.0\NetCoreMVC.pdb
