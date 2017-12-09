@@ -1,0 +1,40 @@
+﻿@model IEnumerable<NetCoreMVC.Entities.City>
+
+@{
+    ViewData["Title"] = "My Cities";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Cities")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Cities", new {item.Id}) |
+                @Html.ActionLink("Details", "Details", "Cities", new {item.Id}) |
+                @Html.ActionLink("Delete", "Delete", "Cities", new {item.Id})
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
