@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NetCoreMVC.Entities;
+using NetCoreMVC.Models;
 
 namespace NetCoreMVC.Controllers
 {
@@ -21,7 +23,8 @@ namespace NetCoreMVC.Controllers
         // GET: Cities
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cities.ToListAsync());
+            var cityEntities = await _context.Cities.ToListAsync();
+            return View(Mapper.Map<IEnumerable<CityDto>>(cityEntities));
         }
 
         // GET: Cities/Details/5
@@ -32,8 +35,9 @@ namespace NetCoreMVC.Controllers
                 return NotFound();
             }
 
-            var city = await _context.Cities
+            var cityEntity = await _context.Cities
                 .SingleOrDefaultAsync(m => m.Id == id);
+            var city = Mapper.Map<CityDetailsDto>(cityEntity);
             if (city == null)
             {
                 return NotFound();
@@ -52,12 +56,12 @@ namespace NetCoreMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description")] City city)
+        public async Task<IActionResult> Create(CityCreationDto city)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(city);
+                var finalCity = Mapper.Map<City>(city);
+                _context.Add(finalCity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -72,7 +76,8 @@ namespace NetCoreMVC.Controllers
                 return NotFound();
             }
 
-            var city = await _context.Cities.SingleOrDefaultAsync(m => m.Id == id);
+            var cityEntity = await _context.Cities.SingleOrDefaultAsync(m => m.Id == id);
+            var city = Mapper.Map<CityEditDto>(cityEntity);
             if (city == null)
             {
                 return NotFound();
@@ -84,8 +89,7 @@ namespace NetCoreMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] City city)
+        public async Task<IActionResult> Edit(int id, CityEditDto city)
         {
             if (id != city.Id)
             {
@@ -96,7 +100,8 @@ namespace NetCoreMVC.Controllers
             {
                 try
                 {
-                    _context.Update(city);
+                    var finalCity = Mapper.Map<City>(city);
+                    _context.Update(finalCity);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -123,8 +128,9 @@ namespace NetCoreMVC.Controllers
                 return NotFound();
             }
 
-            var city = await _context.Cities
+            var cityEntity = await _context.Cities
                 .SingleOrDefaultAsync(m => m.Id == id);
+            var city = Mapper.Map<CityDeleteDto>(cityEntity);
             if (city == null)
             {
                 return NotFound();
@@ -135,7 +141,6 @@ namespace NetCoreMVC.Controllers
 
         // POST: Cities/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var city = await _context.Cities.SingleOrDefaultAsync(m => m.Id == id);

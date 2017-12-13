@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NetCoreMVC.Controllers;
 using NetCoreMVC.Entities;
 
 namespace NetCoreMVC
@@ -42,6 +43,17 @@ namespace NetCoreMVC
             }
 
             app.UseStaticFiles();
+
+            //Using automapper to create mapping between entities and DTO models
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<CitiesController, Models.CityCreationDto>();
+                cfg.CreateMap<Models.CityCreationDto, City>();
+                cfg.CreateMap<CitiesController, Models.CityDto>();
+                cfg.CreateMap<CitiesController, Models.CityEditDto>();
+                cfg.CreateMap<Models.CityEditDto, City>();
+                cfg.CreateMap<City, Models.CityEditDto>();
+            });
 
             app.UseMvc(routes =>
             {

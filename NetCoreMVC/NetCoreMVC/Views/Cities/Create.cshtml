@@ -1,4 +1,4 @@
-﻿@model NetCoreMVC.Entities.City
+﻿@model NetCoreMVC.Models.CityCreationDto
 
 @{
     ViewData["Title"] = "Create";
@@ -10,22 +10,25 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label">City Name:</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label">Description:</label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        @using (Html.BeginForm("Create", "Cities", FormMethod.Post))
+        {
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name)
+                    @Html.TextBoxFor(model => model.Name)
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description)
+                    @Html.TextBoxFor(model => model.Description)
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default"/>
+                </div>
+            </form>
+        }        
     </div>
 </div>
 
