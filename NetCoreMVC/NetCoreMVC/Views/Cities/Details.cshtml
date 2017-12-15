@@ -1,14 +1,8 @@
 ﻿@model NetCoreMVC.Models.CityDetailsDto
-
 @{
-    ViewData["Title"] = "Details";
+    Layout = "../_Layout";
 }
-
-<h2>Details</h2>
-
 <div>
-    <h4>City</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)

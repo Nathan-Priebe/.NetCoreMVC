@@ -23,6 +23,7 @@ namespace NetCoreMVC.Controllers
         // GET: Cities
         public async Task<IActionResult> Index()
         {
+            ViewBag.Title = "My Cities";
             var cityEntities = await _context.Cities.ToListAsync();
             return View(Mapper.Map<IEnumerable<CityDto>>(cityEntities));
         }
@@ -43,12 +44,15 @@ namespace NetCoreMVC.Controllers
                 return NotFound();
             }
 
+            ViewBag.Title = $@"{city.Name} Details";
+
             return View(city);
         }
 
         // GET: Cities/Create
         public IActionResult Create()
         {
+            ViewBag.Title = "Create City";
             return View();
         }
 
@@ -82,6 +86,8 @@ namespace NetCoreMVC.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Title = $@"Edit {city.Name}";
+
             return View(city);
         }
 
@@ -135,6 +141,8 @@ namespace NetCoreMVC.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Title = $@"Delete {city.Name}";
 
             return View(city);
         }
