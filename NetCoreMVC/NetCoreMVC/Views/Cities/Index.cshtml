@@ -3,9 +3,9 @@
     Layout = "../_Layout";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create", "Cities")
-</p>
+<div style="float: right;">
+    <a href="@Url.Action("Create", "Cities")" class="btn btn-default">Add City <i class="fas fa-plus"></i></a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -27,9 +27,12 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "Cities", new {item.Id}) |
-                @Html.ActionLink("Details", "Details", "Cities", new {item.Id}) |
-                @Html.ActionLink("Delete", "Delete", "Cities", new {item.Id})
+                <div style="float: right;">
+                    <a href="@Url.Action("Edit", "Cities", new {item.Id})"><i class="fas fa-edit fa-lg"></i></a>
+                    <a href="@Url.Action("Details", "Cities", new {item.Id})"><i class="fas fa-book fa-lg"></i></a>
+                    <a href="@Url.Action("Delete", "Cities", new {item.Id})"><i class="far fa-trash-alt fa-lg"></i></a>
+                    
+                </div>
             </td>
         </tr>
         }

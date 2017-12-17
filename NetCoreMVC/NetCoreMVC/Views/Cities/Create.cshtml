@@ -2,6 +2,7 @@
 @{
     Layout = "../_Layout";
 }
+<hr />
 <div class="row">
     <div class="col-md-4">
         @using (Html.BeginForm("Create", "Cities", FormMethod.Post))
@@ -19,14 +20,10 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <a href="@Url.Action("Index", "Cities")" class="btn btn-default">Back to Cities</a>
                     <input type="submit" value="Create" class="btn btn-default"/>
                 </div>
             </form>
         }        
     </div>
 </div>
-
-<div>
-    @Html.ActionLink("Back to Cities", "Index", "Cities")
-</div>
-
