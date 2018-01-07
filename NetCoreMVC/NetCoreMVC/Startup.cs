@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using NetCoreMVC.Controllers;
 using NetCoreMVC.Entities;
+using Serilog;
 
 namespace NetCoreMVC
 {

@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NetCoreMVC.Entities;
+using Serilog;
+using Serilog.Events;
 
 namespace NetCoreMVC
 {
@@ -16,6 +18,11 @@ namespace NetCoreMVC
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Warning()
+                .Enrich.FromLogContext()
+                .WriteTo.Seq("http://localhost:5341")
+                .CreateLogger();
             var host = BuildWebHost(args);
 
             using (var scope = host.Services.CreateScope())

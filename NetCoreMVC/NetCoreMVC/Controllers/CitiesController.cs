@@ -6,8 +6,10 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using NetCoreMVC.Entities;
 using NetCoreMVC.Models;
+using Serilog;
 
 namespace NetCoreMVC.Controllers
 {
@@ -33,6 +35,7 @@ namespace NetCoreMVC.Controllers
         {
             if (id == null)
             {
+                Log.Information("(Details) City was not found");
                 return NotFound();
             }
 
@@ -41,6 +44,7 @@ namespace NetCoreMVC.Controllers
             var city = Mapper.Map<CityDetailsDto>(cityEntity);
             if (city == null)
             {
+                Log.Information("(Details) City was not found");
                 return NotFound();
             }
 
@@ -67,6 +71,7 @@ namespace NetCoreMVC.Controllers
                 var finalCity = Mapper.Map<City>(city);
                 _context.Add(finalCity);
                 await _context.SaveChangesAsync();
+                Log.Information("(Create) City created " + city.Name);
                 return RedirectToAction(nameof(Index));
             }
             return View(city);
@@ -77,6 +82,7 @@ namespace NetCoreMVC.Controllers
         {
             if (id == null)
             {
+                Log.Information("(Edit) City was not found");
                 return NotFound();
             }
 
@@ -84,6 +90,7 @@ namespace NetCoreMVC.Controllers
             var city = Mapper.Map<CityEditDto>(cityEntity);
             if (city == null)
             {
+                Log.Information("(Edit) City was not found");
                 return NotFound();
             }
             ViewBag.Title = $@"Edit {city.Name}";
@@ -99,6 +106,7 @@ namespace NetCoreMVC.Controllers
         {
             if (id != city.Id)
             {
+                Log.Information("(Edit) City was not found");
                 return NotFound();
             }
 
@@ -131,6 +139,7 @@ namespace NetCoreMVC.Controllers
         {
             if (id == null)
             {
+                Log.Information("(Delete) City was not found");
                 return NotFound();
             }
 
@@ -139,6 +148,7 @@ namespace NetCoreMVC.Controllers
             var city = Mapper.Map<CityDeleteDto>(cityEntity);
             if (city == null)
             {
+                Log.Information("(Delete) City was not found");
                 return NotFound();
             }
 
